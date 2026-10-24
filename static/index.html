@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1118">
+  <title>Bitunix MACD Screener</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand-mark">M</div>
+      <div>
+        <h1>MACD Screener</h1>
+        <p>BITUNIX · USDT PERPETUALS</p>
+      </div>
+      <span class="live-tag"><i></i> PUBLIC MARKET DATA</span>
+    </header>
+
+    <section class="panel controls">
+      <div class="field">
+        <label for="mainTf">Select main timeframe</label>
+        <select id="mainTf">
+          <option value="15m">15 minutes</option>
+          <option value="1h" selected>1 hour</option>
+          <option value="4h">4 hours</option>
+          <option value="1d">1 day</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Coin MACD timeframes</label>
+        <div id="coinPair" class="pair-display">15M + 3M</div>
+      </div>
+      <div class="field">
+        <label for="coinLimit">Maximum pairs to scan</label>
+        <select id="coinLimit">
+          <option value="30">30 pairs</option><option value="60">60 pairs</option>
+          <option value="120" selected>120 pairs</option><option value="200">200 pairs</option>
+          <option value="250">250 pairs</option>
+        </select>
+      </div>
+      <button id="scanBtn" class="primary">↻ Scan market</button>
+    </section>
+
+    <section class="stats">
+      <div class="stat panel"><span>BTC MACD BIAS</span><strong id="biasValue">—</strong><small id="biasSub">Scan to check direction</small></div>
+      <div class="stat panel"><span>COINS SCANNED</span><strong id="scannedValue">—</strong><small>Excludes BTCUSDT</small></div>
+      <div class="stat panel"><span>SETUPS FOUND</span><strong id="setupValue">—</strong><small>Matches current rules</small></div>
+    </section>
+
+    <section class="panel results-panel">
+      <div class="table-head">
+        <div><h2>Signal results</h2><p id="lastScan">No scan yet</p></div>
+        <span class="closed-tag">CLOSED CANDLES ONLY</span>
+      </div>
+      <div id="notice" class="notice">Choose a main timeframe and press <b>Scan market</b>.</div>
+      <div class="rules-note">
+        <strong>LONG:</strong> BTC MACD LONG on selected timeframe + coin higher-timeframe MACD LONG + coin lower-timeframe MACD SHORT.<br>
+        <strong>SHORT:</strong> BTC MACD SHORT + coin higher-timeframe MACD SHORT + coin lower-timeframe MACD LONG.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>COIN</th><th>SIGNAL</th></tr></thead>
+          <tbody id="resultsBody"><tr><td colspan="2" class="empty">No scan results yet.</td></tr></tbody>
+        </table>
+      </div>
+      <p class="footnote">MACD defaults: 12, 26, 9. Every condition uses the most recently closed candle. No orders are placed.</p>
+    </section>
+    <footer>Built for market screening · Data from Bitunix public API</footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
