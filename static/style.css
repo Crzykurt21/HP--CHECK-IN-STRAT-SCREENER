@@ -29,9 +29,4 @@
   line-height: 1.7;
 }
 .rules-note strong { color: #e7edf4; }
-.site-logo {
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
-  display: block;
-}
+
